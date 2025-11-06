@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Puchu 🥳💖</title>
+  <title>Happy Birthday My Puchu 🥳💖</title>
 
   <style>
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      background: url("bg.jpg") center/cover no-repeat fixed; /* ← Background image */
+      background: url("bg.jpg") center/cover no-repeat fixed;
     }
 
     h1 {
@@ -27,7 +27,6 @@
       text-shadow: 0 0 6px #c30059;
     }
 
-    /* 3 Column Gallery */
     .gallery {
       width: 90%;
       max-width: 1000px;
@@ -49,7 +48,6 @@
       transform: scale(1.06);
     }
 
-    /* Fullscreen Viewer */
     #preview {
       display: none;
       position: fixed;
@@ -76,7 +74,6 @@
       cursor: pointer;
     }
 
-    /* Hover Arrows */
     .arrow {
       position: absolute;
       top: 50%;
@@ -101,72 +98,128 @@
       0%, 100% { transform: translateY(-50%); }
       50% { transform: translateY(-55%); }
     }
+
+    /* PASSWORD SCREEN */
+    #lockScreen {
+      position: fixed;
+      inset: 0;
+      background: #ffd6e8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial;
+      z-index: 10000;
+    }
+
+    #passwordInput {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ca568a;
+      width: 200px;
+      text-align: center;
+    }
+
+    #unlockBtn {
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: none;
+      background: #ff5fa2;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #wrongText {
+      color: red;
+      display: none;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
 <body>
 
-  <h1>Happy Birthday Puchu 🥳💖</h1>
-  <h2>Cute toh hain sare pics tumhari tarah 🤭💗</h2>
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+  <h2 style="color:#d91b63;">Enter Password 💗</h2>
+  <input id="passwordInput" type="password" placeholder="Type password...">
+  <button id="unlockBtn">Unlock 💞</button>
+  <p id="wrongText">Wrong password! Try again 😢</p>
+</div>
 
-  <div class="gallery">
-    <img src="images/pic1.jpg">
-    <img src="images/pic2.jpg">
-    <img src="images/pic3.jpg">
-    <img src="images/pic4.jpg">
-    <img src="images/pic5.jpg">
-    <img src="images/pic6.jpg">
-    <img src="images/pic7.jpg">
-    <img src="images/pic8.jpg">
-    <img src="images/pic9.jpg">
-    <img src="images/pic10.jpg">
-    <img src="images/pic11.jpg">
-    <img src="images/pic12.jpg">
-    <img src="images/pic13.jpg">
-    <img src="images/pic14.jpg">
-    <img src="images/pic15.jpg">
-  </div>
+<h1>Happy Birthday My Puchu 🥳💖</h1>
+<h2>Cute toh hain sare pics tumhari tarah 🤭💗</h2>
 
-  <!-- Fullscreen -->
-  <div id="preview">
-    <span id="closeBtn">×</span>
-    <span id="prevBtn" class="arrow">&#10094;</span>
-    <img id="previewImg">
-    <span id="nextBtn" class="arrow">&#10095;</span>
-  </div>
+<div class="gallery">
+  <img src="images/pic1.jpg">
+  <img src="images/pic2.jpg">
+  <img src="images/pic3.jpg">
+  <img src="images/pic4.jpg">
+  <img src="images/pic5.jpg">
+  <img src="images/pic6.jpg">
+  <img src="images/pic7.jpg">
+  <img src="images/pic8.jpg">
+  <img src="images/pic9.jpg">
+  <img src="images/pic10.jpg">
+  <img src="images/pic11.jpg">
+  <img src="images/pic12.jpg">
+  <img src="images/pic13.jpg">
+  <img src="images/pic14.jpg">
+  <img src="images/pic15.jpg">
+</div>
 
-  <script>
-    const images = document.querySelectorAll(".gallery img");
-    const preview = document.getElementById("preview");
-    const previewImg = document.getElementById("previewImg");
-    const closeBtn = document.getElementById("closeBtn");
-    let index = 0;
+<div id="preview">
+  <span id="closeBtn">×</span>
+  <span id="prevBtn" class="arrow">&#10094;</span>
+  <img id="previewImg">
+  <span id="nextBtn" class="arrow">&#10095;</span>
+</div>
 
-    function showImage(i) {
-      previewImg.src = images[i].src;
+<script>
+
+  // PASSWORD CHECK
+  document.getElementById("unlockBtn").onclick = () => {
+    let p = document.getElementById("passwordInput").value;
+    if(p === "20"){ // <-- YOUR PASSWORD
+      document.getElementById("lockScreen").style.display = "none";
+    } else {
+      document.getElementById("wrongText").style.display = "block";
     }
+  };
 
-    images.forEach((img, i) => {
-      img.onclick = () => {
-        index = i;
-        showImage(index);
-        preview.style.display = "flex";
-      };
-    });
+  // GALLERY SCRIPT
+  const images = document.querySelectorAll(".gallery img");
+  const preview = document.getElementById("preview");
+  const previewImg = document.getElementById("previewImg");
+  const closeBtn = document.getElementById("closeBtn");
+  let index = 0;
 
-    document.getElementById("prevBtn").onclick = () => {
-      index = (index - 1 + images.length) % images.length;
+  function showImage(i) {
+    previewImg.src = images[i].src;
+  }
+
+  images.forEach((img, i) => {
+    img.onclick = () => {
+      index = i;
       showImage(index);
+      preview.style.display = "flex";
     };
+  });
 
-    document.getElementById("nextBtn").onclick = () => {
-      index = (index + 1) % images.length;
-      showImage(index);
-    };
+  document.getElementById("prevBtn").onclick = () => {
+    index = (index - 1 + images.length) % images.length;
+    showImage(index);
+  };
 
-    closeBtn.onclick = () => preview.style.display = "none";
-  </script>
+  document.getElementById("nextBtn").onclick = () => {
+    index = (index + 1) % images.length;
+    showImage(index);
+  };
+
+  closeBtn.onclick = () => preview.style.display = "none";
+
+</script>
 
 </body>
 </html>
-
