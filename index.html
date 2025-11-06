@@ -140,6 +140,9 @@
 
 <body>
 
+<!-- 🎵 BACKGROUND MUSIC -->
+<audio id="bgMusic" src="Tera Hone Laga Hun.mp3" loop></audio>
+
 <!-- PASSWORD SCREEN -->
 <div id="lockScreen">
   <h2 style="color:#d91b63;">Enter Password 💗</h2>
@@ -178,11 +181,13 @@
 
 <script>
 
-  // PASSWORD CHECK
+  // PASSWORD CHECK + PLAY MUSIC
   document.getElementById("unlockBtn").onclick = () => {
     let p = document.getElementById("passwordInput").value;
-    if(p === "Swasti"){ // <-- YOUR PASSWORD
+    if(p === "Swasti"){ // password
       document.getElementById("lockScreen").style.display = "none";
+      document.getElementById("bgMusic").volume = 0.5;
+      document.getElementById("bgMusic").play();
     } else {
       document.getElementById("wrongText").style.display = "block";
     }
